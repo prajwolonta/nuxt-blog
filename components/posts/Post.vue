@@ -19,7 +19,7 @@
         {{ previewText }}
       </b-card-text>
 
-      <b-button :to="'/posts/' + id" variant="primary">Read More</b-button>
+      <b-button :to="postLink" variant="primary">{{ isAdmin ? 'Edit': 'Read more' }} </b-button>
     </b-card>
 </template>
 
@@ -30,6 +30,10 @@
           id: {
             type: Number,
             required: true
+          },
+          isAdmin: {
+            type:Boolean,
+            required: false
           },
           title: {
             type: String,
@@ -43,7 +47,12 @@
             type: String,
             required: true
           }
-        }
+        },
+      computed: {
+          postLink(){
+            return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id
+          }
+      }
     }
 </script>
 

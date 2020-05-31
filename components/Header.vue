@@ -10,6 +10,10 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/about" >About</b-nav-item>
           <b-nav-item to="/posts" >Blog</b-nav-item>
+          <b-nav-item-dropdown text="Admin">
+            <b-dropdown-item to='/admin'>Post List</b-dropdown-item>
+            <b-dropdown-item to='/admin/new-post'>Create Post</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
