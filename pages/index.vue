@@ -1,72 +1,32 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        blog
-      </h1>
-      <h2 class="subtitle">
-        My kryptonian Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="home-page">
+    <h1>Get the latest Tech news</h1>
+    <section class="featured-posts mt-4">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 mb-4" v-for="i in 3" :key="i">
+          <Post
+            :id="i"
+            :title="$faker().lorem.sentence()"
+            :thumbnail="'https://picsum.photos/600/300/?image=' + i"
+            :previewText = "$faker().lorem.sentences(3)"
+          />
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import Post from "../components/posts/Post";
 
 export default {
   components: {
+    Post,
     Logo
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
