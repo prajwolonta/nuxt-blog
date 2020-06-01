@@ -1,5 +1,5 @@
 <template>
-  <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+  <b-form @submit="onSubmit" v-if="show">
     <b-form-group
 
       label="Author:"
@@ -15,7 +15,6 @@
     </b-form-group>
 
     <b-form-group
-
       label="Title:"
       label-for="title"
       description="Please enter the title of your article."
@@ -54,7 +53,6 @@
 
 
     <b-button type="submit" variant="primary">Submit</b-button>
-    <b-button type="reset" variant="danger">Reset</b-button>
     <b-button @click="$router.push('/admin')" variant="warning">Cancel</b-button>
   </b-form>
 </template>
@@ -67,7 +65,7 @@
           form: this. post ? { ...this.post } : {
             author: '',
             title: '',
-            thumbnailLink: '',
+            thumbnailLink: 'https://picsum.photos/600/300/?image=',
             content: ''
           },
           show: true
@@ -87,20 +85,7 @@
       methods: {
         onSubmit(evt) {
           evt.preventDefault()
-          alert(JSON.stringify(this.form))
-        },
-        onReset(evt) {
-          evt.preventDefault()
-          // Reset our form values
-          this.form.author = ''
-          this.form.title = ''
-          this.form.thumbnailLink = ''
-          this.form.content = ''
-          // Trick to reset/clear native browser form validation state
-          this.show = false
-          this.$nextTick(() => {
-            this.show = true
-          })
+          this.$emit('submit', this.form)
         }
       }
     }
